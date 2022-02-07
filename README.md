@@ -5,8 +5,8 @@
 - Register in [DataTalks.Club's Slack](https://datatalks.club/slack.html)
 - Join the [`#course-data-engineering`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel
 - Subscribe to our [public Google Calendar](https://calendar.google.com/calendar/?cid=ZXIxcjA1M3ZlYjJpcXU0dTFmaG02MzVxMG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ) (it works from Desktop only)
-- The videos will be published to [DataTalks.Club's YouTube channel](https://www.youtube.com/c/DataTalksClub) in [the course playlist](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb) 
-
+- The videos are published to [DataTalks.Club's YouTube channel](https://www.youtube.com/c/DataTalksClub) in [the course playlist](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb) 
+- [Leaderboard](https://docs.google.com/spreadsheets/d/e/2PACX-1vR9oQiYnAVvzL4dagnhvp0sngqagF0AceD0FGjhS-dnzMTBzNQIal3-hOgkTibVQvfuqbQ69b0fvRnf/pubhtml)
 
 ## Syllabus
 
@@ -22,29 +22,21 @@
 * Preparing the environment for the course
 * Homework
 
-[Details](week_1_basics_n_setup)
+[More details](week_1_basics_n_setup)
 
-Duration: 2-2.5h
 
 ### [Week 2: Data ingestion](week_2_data_ingestion)
 
-Goal: Orchestrating a job to ingest web data to a Data Lake in its raw form.
+* Data Lake
+* Workflow orchestration
+* Setting up Airflow locally
+* Ingesting data to GCP with Airflow
+* Ingesting data to local Postgres with Airflow
+* Moving data from AWS to GCP (Transfer service)
+* Homework
 
-Instructors: Sejal, Alexey, Ankush
+[More details](week_2_data_ingestion)
 
-* Introduction to Data Lake (GCS) -- 10 mins
-  
-* Introduction to Orchestration (Airflow) -- 15 mins
-  
-* Workshop:
-  * Setting up Docker with Airflow: -- 15 mins
-  * Data ingestion DAG: -- 30 mins 
-    * Cloud-based, i.e. with GCP (GCS + BigQuery)
-    * Local, with Postgres
-
-* Further Enhancements: Transfer Service (AWS -> GCP)
-   
-Duration: 1.5h
 
 
 ### [Week 3: Data Warehouse](week_3_data_warehouse)
@@ -72,27 +64,13 @@ Goal: Transforming Data in DWH to Analytical Views
 
 Instructor: Victoria
 
-* Basics (15 mins)
-    * What is DBT?
-    * ETL vs ELT 
-    * Data modeling
-    * DBT fit of the tool in the tech stack
-* Usage (Combination of coding + theory) (1:30-1:45 mins)
-    * Anatomy of a dbt model: written code vs compiled Sources
-    * Materialisations: table, view, incremental, ephemeral  
-    * Seeds 
-    * Sources and ref  
-    * Jinja and Macros 
-    * Tests  
-    * Documentation 
-    * Packages 
-    * Deployment: local development vs production 
-    * DBT cloud: scheduler, sources and data catalog (Airflow)
-* Google data studio -> Dashboard
-* Extra knowledge:
-    * DBT cli (local)
+* Basics of analytics engineering (15 mins)
+* Developing a dbt project (Combination of coding + theory) (1:30)
+* Visualising the data in Google data studio (15 mins)
 
 Duration: 2h    
+
+[More details](week_4_analytics_engineering)
 
 
 ### [Week 5: Batch processing](week_5_batch_processing)
@@ -190,7 +168,17 @@ Prior experience with data engineering is not required.
 - Alexey Grigorev (https://linkedin.com/in/agrigorev)
 
 
-## FAQ
+## Questions
+
+### Asking questions in Slack 
+
+You can ask any questions in the [`#course-data-engineering`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel in [DataTalks.Club](https://datatalks.club) slack
+
+Please follow [these recommendations](asking-questions.md) when asking for help   
+
+
+### FAQ
+
 
 * **Q**: I registered, but haven't received a confirmation email. Is it normal?
   **A**: Yes, it's normal. It's not automated. But you will receive an email eventually 
@@ -201,6 +189,7 @@ Prior experience with data engineering is not required.
 * **Q**: I'm 100% not sure I'll be able to attend. Can I still sign up?
   **A**: Yes, please do! You'll receive all the updates and then you can watch the course at your own pace. 
 * **Q**: Do you plan to run a ML engineering course as well? **A**: Glad you asked. [We do](https://github.com/alexeygrigorev/mlbookcamp-code/tree/master/course-zoomcamp) :)
+
 
 
 ## Our friends 

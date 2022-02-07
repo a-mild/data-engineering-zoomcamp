@@ -1,0 +1,56 @@
+# Question 3
+SELECT 
+	CAST(tpep_pickup_datetime as DATE) as "day",
+	count(1)
+FROM
+	yellow_taxi_trips
+GROUP BY
+	CAST(tpep_pickup_datetime as DATE)
+
+... then look for January 15
+
+# Question 4
+SELECT 
+	CAST(tpep_pickup_datetime as DATE) as "day",
+	MAX(tip_amount) as "max_tip"
+FROM
+	yellow_taxi_trips
+GROUP BY
+	CAST(tpep_pickup_datetime as DATE)
+ORDER BY
+	"max_tip" DESC
+
+# Question 5
+SELECT	
+	"DOLocationID",
+	COUNT(*)
+FROM (
+	SELECT
+	"PULocationID",
+	"DOLocationID",
+	CAST(tpep_pickup_datetime as DATE) as "day"
+FROM
+	yellow_taxi_trips
+)
+AS 
+	x
+WHERE
+	"day"='2021-01-14' AND
+	"PULocationID"=43
+GROUP BY
+	"DOLocationID"
+ORDER BY
+	"count" DESC
+
+# Question 6
+SELECT
+	"PULocationID",
+	"DOLocationID",
+	COUNT(*),
+	AVG(total_amount)
+FROM
+	yellow_taxi_trips
+GROUP BY
+	"PULocationID", "DOLocationID"
+ORDER BY
+	"avg" DESC
