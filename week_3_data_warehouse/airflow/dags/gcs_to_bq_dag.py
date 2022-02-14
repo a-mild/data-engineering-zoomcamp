@@ -13,7 +13,7 @@ path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'trips_data_all')
 
 DATASET = "tripdata"
-COLOUR_RANGE = {'yellow': 'tpep_pickup_datetime', 'green': 'lpep_pickup_datetime'}
+COLOUR_RANGE = {'fhv': 'DropOff_datetime'}
 INPUT_PART = "raw"
 INPUT_FILETYPE = "parquet"
 
@@ -35,6 +35,7 @@ with DAG(
 ) as dag:
 
     for colour, ds_col in COLOUR_RANGE.items():
+        print(PROJECT_ID, BUCKET)
         move_files_gcs_task = GCSToGCSOperator(
             task_id=f'move_{colour}_{DATASET}_files_task',
             source_bucket=BUCKET,
@@ -54,15 +55,18 @@ with DAG(
                 },
                 "externalDataConfiguration": {
                     "autodetect": "True",
-                    "sourceFormat": "CSV",
+                    "sourceFormat": "PARQUET",
                     "sourceUris": [f"gs://{BUCKET}/{colour}/*"],
                 },
             },
         )
 
+        cluster_col = "dispatching_base_num"
+
         CREATE_BQ_TBL_QUERY = (
-            f"CREATE OR REPLACE TABLE {BIGQUERY_DATASET}.{colour}_{DATASET} \
+            f"CREATE OR REPLACE TABLE {BIGQUERY_DATASET}.{colour}_{DATASET}_clustered \
             PARTITION BY DATE({ds_col}) \
+            CLUSTER BY {cluster_col}\
             AS \
             SELECT * FROM {BIGQUERY_DATASET}.{colour}_{DATASET}_external_table;"
         )
@@ -78,4 +82,4 @@ with DAG(
             }
         )
 
-        move_files_gcs_task >> bigquery_external_table_task >> bq_create_partitioned_table_job
+        bq_create_partitioned_table_job
